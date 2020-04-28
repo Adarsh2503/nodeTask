@@ -1,0 +1,4 @@
+  {
+      "mongoURI":"mongodb+srv://adarsh:adarsh@social2503-og18c.mongodb.net/test?retryWrites=true&w=majority",
+      "jwtSecret": "mysecrettoken"
+  }
