@@ -132,5 +132,63 @@ router.get('/save_all_policy_info', function(req, res, next) {
   })
 });
 
+router.get('/policy/:username', function(req, res, next) {
+  console.log(req.params.username)
+  console.log('hi');
+  Policyinfo.collection.aggregate([
+    {
+        $lookup: {
+            from: "user1",
+            localField: "user1",
+            foreignField: "_id",
+            as: "userInfoData"
+       
+    }
+  },
+  { $match: { 'userInfoData.firstname': req.params.username } }
+  
+  ]).toArray(function (err, res1) {
+
+    if (err)
+
+        throw err;
+
+    console.log(JSON.stringify(res1));
+    res.send(res1);
+  
+
+});
+
+});
+
+router.get('/aggregatedPolicy', function(req, res, next) {
+  console.log('hi');
+  Policyinfo.collection.aggregate([
+    {
+        $lookup: {
+            from: "user1",
+            localField: "user1",
+            foreignField: "_id",
+            as: "userInfoData"
+       
+    }
+  },
+  { $group : { _id: "$user1", policy: { $push: "$policy_number" } } }
+  
+  
+  ]).toArray(function (err, res1) {
+
+    if (err)
+
+        throw err;
+
+    console.log(JSON.stringify(res1));
+    res.send(res1);
+  
+
+});
+
+});
+
 
 module.exports = router;

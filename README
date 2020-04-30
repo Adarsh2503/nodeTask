@@ -1,0 +1,53 @@
+Task 1.
+
+Open code and go to route/index.js
+router.get('/save_all_agent') : is to save all agent names
+router.get('/save_all_useracc') : is to save user account  
+router.get('/save_all_users') : is to save all user details
+router.get('/save_all_policy_category') : is to save all plolicy category
+router.get('/save_all_policy_carrier') : is to save all policy carrier i.e  company name
+router.get('/get_all_policy_carrier') : get methd for policy carrier
+router.get('/get_all_agent') : get all agent names
+router.get('/save_all_policy_info') : save policy info
+
+get policy details with respect to username
+
+router.get('/policy/:username') : pass the username in params
+
+get aggregated policy 
+
+router.get('/aggregatedPolicy') : get the aggregated policy details
+
+collection name : agents, policycarriers,policycategories,policyinfos,
+user1,useraccounts
+
+Task 2:
+
+1. for(var i = 0, len = cpus.length; i < len; i++) {
+  console.log("CPU %s:", i);
+  var cpu = cpus[i], total = 0;
+
+  for(var type in cpu.times) {
+      total += cpu.times[type];
+  }
+
+  for(type in cpu.times) {
+      console.log("\t", type, Math.round(100 * cpu.times[type] / total));
+  }
+}
+
+It will give us the result of cpu usage in percentage and the i can check if its more than 70% then i will just run a child 
+process which is process.exit(1); and try to restart the server
+
+2. open code goto route/posts.js file
+
+router.post('/post') : Created a post-service that takes the message, day and time in body parameters 
+and it inserts that message into DB at that particular day and time
+
+collection name : post1
+
+ for body parameter {
+    msg: "something in msg",
+    date: "30-04-2020",
+    time: "10:22:31"
+}

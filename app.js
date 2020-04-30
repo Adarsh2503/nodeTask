@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var os = require('os');
+
+var cpus = os.cpus();
 
 var indexRouter = require('./routes/index');
 
@@ -45,6 +48,20 @@ app.use('/posts', postsRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+for(var i = 0, len = cpus.length; i < len; i++) {
+  console.log("CPU %s:", i);
+  var cpu = cpus[i], total = 0;
+
+  for(var type in cpu.times) {
+      total += cpu.times[type];
+  }
+
+  for(type in cpu.times) {
+      console.log("\t", type, Math.round(100 * cpu.times[type] / total));
+  }
+}
+
 
 // error handler
 app.use(function(err, req, res, next) {
